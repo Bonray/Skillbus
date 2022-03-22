@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skillbus</title>
+  <link rel="stylesheet" href="css/choices.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/choices.min.js"></script>
+  <script defer type="module" src="js/controller.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <a class="header__logo" href="#"></a>
+      <form class="header__form" action="">
+        <input class="header__input" type="text" placeholder="Введите запрос">
+        <div class="header__search-results-container">
+          <!-- <div class="header__form-search-result">Text</div> -->          
+        </div>
+      </form>
+    </div>
+  </header>
+  <section class="clients">
+    <div class="container clients__container">
+      <h1 class="clients__title">Клиенты</h1>
+      <table class="clients__table">
+        <thead class="clients__table-head">
+          <tr>
+            <th class="clients__column-heading clients__column-heading--id" scope="col" data-sorting-param="id">
+              ID
+              <svg width="8" height="8" viewbox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.49691e-07 4L0.705 4.705L3.5 1.915L3.5 8L4.5 8L4.5 1.915L7.29 4.71L8 4L4 -3.49691e-07L3.49691e-07 4Z" fill="#9873FF"/>
+              </svg>
+            </th>
+            <th class="clients__column-heading clients__column-heading--name" scope="col" data-sorting-param="name">
+              Фамилия Имя Отчество
+              <svg width="8" height="8" viewbox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4L7.295 3.295L4.5 6.085L4.5 0L3.5 0L3.5 6.085L0.71 3.29L0 4L4 8L8 4Z" fill="#9873FF"/>
+              </svg>
+              <span class="clients__heading-filter">А-Я</span>
+            </th>
+            <th class="clients__column-heading clients__column-heading--creation-date" scope="col" data-sorting-param="createdAt">
+              Дата и время создания
+              <svg width="8" height="8" viewbox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4L7.295 3.295L4.5 6.085L4.5 0L3.5 0L3.5 6.085L0.71 3.29L0 4L4 8L8 4Z" fill="#9873FF"/>
+              </svg>                
+            </th>
+            <th class="clients__column-heading clients__column-heading--update-date" scope="col" data-sorting-param="updatedAt">
+              Последние изменения
+              <svg width="8" height="8" viewbox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4L7.295 3.295L4.5 6.085L4.5 0L3.5 0L3.5 6.085L0.71 3.29L0 4L4 8L8 4Z" fill="#9873FF"/>
+              </svg>               
+            </th>
+            <th class="clients__column-heading clients__column-heading--contacts" scope="col">Контакты</th>
+            <th class="clients__column-heading clients__column-heading--actions" scope="col">Действия</th>
+          </tr>
+        </thead>
+        <tbody class="clients__table-body">
+        </tbody>
+      </table>
+
+      <div class="btn-wrapper add-client__btn-wrapper">
+        <button class="add-client__btn">Добавить клиента</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add new client -->
+  <div class="modal modal-add hidden">
+    <form class="form form-add">
+      <div class="form__container">
+        <h2 class="form__title">Новый клиент</h2>
+        <button class="form__close-modal form-add__close-modal" type="button"></button>
+        <div class="placeholder-wrapper">
+          <input class="form__input" type="text" name="surname" placeholder=" " required>
+          <span class="placeholder">
+            Фамилия<span class="placeholder__asterisk">*</span>
+          </span>
+        </div>
+        <div class="placeholder-wrapper">
+          <input class="form__input" type="text" name="name" placeholder=" " required>
+          <span class="placeholder">
+            Имя<span class="placeholder__asterisk">*</span>
+          </span>
+        </div>
+        <div class="placeholder-wrapper">
+          <input class="form__input" type="text" name="lastName" placeholder=" ">
+          <span class="placeholder">
+            Отчество
+          </span>
+        </div>
+      </div>
+      <div class="form-contacts__container">
+        <div class="form-contacts__input-group-container form-contacts-new__input-group-container"></div>
+        <button class="form__btn-add form-add__btn-add" type="button">Добавить контакт</button>
+      </div>
+      <div class="btn-wrapper form__btn-group">
+        <button class="form__btn-submit" type="submit">Сохранить</button>
+        <button class="form__btn-cancel">Отмена</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Edit existing client data -->
+  <div class="modal modal-edit hidden">
+    <form class="form form-edit">
+      <div class="form__container">
+        <h2 class="form__title">Изменить данные<span class="form__client-id">ID: 123458</span></h2>
+        <button class="form__close-modal form-edit__close-modal" type="button"></button>
+        <label class="form__label">
+          Фамилия<span class="form__label-asterisk">*</span>
+          <input class="form__input form-edit__input--surname" type="text" name="surname">
+        </label>
+        <label class="form__label">
+          Имя<span class="form__label-asterisk">*</span>
+          <input class="form__input form-edit__input--name" type="text" name="name">
+        </label>
+        <label class="form__label">
+          Отчество
+          <input class="form__input form-edit__input--last-name" type="text" name="lastName">
+        </label>
+      </div>
+      <div class="form-contacts__container">
+        <div class="form-contacts__input-group-container form-contacts-edit__input-group-container"></div>
+        <button class="form__btn-add form-edit__btn-add" type="button">Добавить контакт</button>
+      </div>
+      <div class="btn-wrapper form__btn-group">
+        <button class="form__btn-submit modal__btn-submit" type="submit">Сохранить</button>
+        <button class="form__btn-cancel form-edit__btn-delete">Удалить клиента</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Confirm client deletion -->
+  <div class="modal modal-delete hidden">
+    <div class="delete-client__container">
+      <h2 class="delete-client__title">Удалить клиента</h2>
+      <button class="form__close-modal delete-client__close-modal" type="button"></button>
+      <p class="delete-client__text">Вы действительно хотите удалить данного клиента?</p>
+      <button class="delete-client__btn-submit">Удалить</button>
+      <button class="delete-client__btn-cancel">Отмена</button>
+    </div>
+  </div>
+
+  <div class="overlay hidden"></div>
+</body>
+</html>
