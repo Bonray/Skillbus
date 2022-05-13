@@ -163,7 +163,6 @@ class TableView extends View {
   }
 
   addHandlerRender(handler) {
-    // ['load', 'hashchange'].forEach(e => window.addEventListener(e, handler));
     window.addEventListener('load', e => {
       e.preventDefault();
       handler();

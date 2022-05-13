@@ -65,7 +65,6 @@ export const loadData = async function(sortingParam = null, id = null) {
   // If ID argument is passed then load only info about the client with this ID
   if (id) {
     state.clientModal = await AJAX(`${API_URL}/clients/${id}`);
-    // findClient(id);
     return;
   }
 
@@ -119,8 +118,3 @@ export const updateClient = async function(id, newClientData, includeCreatedAt) 
 export const deleteClient = async function(id) {
   await AJAX(`${API_URL}/clients/${id}`, null, null, true);
 }
-
-// Find client according to his ID
-// const findClient = function(id) {
-//   state.clientModal = state.clients.find(client => +client.id === +id);
-// }
