@@ -21,6 +21,7 @@ class DeleteClientView extends View {
       const id = this._btnDelete.dataset.id;
       handler(id);
       this.toggleWindow();
+      history.pushState(null, null, '/');
     })
   }
 
